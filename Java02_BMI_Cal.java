@@ -31,8 +31,7 @@ public class Java02_BMI_Cal {
         System.out.println("You: " + name);
         System.out.println("Age: " + age + " years old");
         System.out.printf("Your BMI is  : %.2f\n", bmi); // %.2f คือแสดงทศนิยม 2 ตำแหน่ง
-        System.out.println("BMI Category: " + getBMICategory(bmi));
-
+        System.out.println("-x-x---x-x--x-x-x-x-");
         // ปิด Scanner เมื่อใช้งานเสร็จ
         sc.close();
     }
