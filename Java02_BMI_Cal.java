@@ -33,6 +33,6 @@ public class Java02_BMI_Cal {
         System.out.printf("Your BMI is  : %.2f\n", bmi); // %.2f คือแสดงทศนิยม 2 ตำแหน่ง
         System.out.println("-x-x---x-x--x-x-x-x-");
         // ปิด Scanner เมื่อใช้งานเสร็จ
-        sc.close();
+        sc.close();                 // Hello test
     }
 }
