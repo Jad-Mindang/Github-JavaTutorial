@@ -1,0 +1,157 @@
+GitHub
+>> Config system process
+    - git config --global user.email "jad_mindang@hotmail.com"
+    - git config --global user.name "Jad-Mindang"
+    - git config --list // This process will config system and username 
+    - 
+
+>> Cycle of control process
+    - git init      // git check file in folder that stay
+    - git add       // Area correct version of history
+    - git commit    // Save data operating to user computer
+    - git push      // Upload all data that revised to server
+
+
+>> Cycle of control process <Deatil>
+    - git init      // Create Git repository
+    ____________________________________________________________________________________
+    - git add       // Add file to staging area(check-in)
+        >> git add .            => all file added for check in
+        >> git add *.html       => add file only .html
+        >> git add <file name>  => add file spcifi file name
+
+            Return version before add file to staging area <git reset>
+                >> git reset <file name>        // ex >> git reset readme.txt  การดึกไฟล์ที่ไม่ต้องการออกจาก staging area
+            
+        ________________________________________________________________________________
+        >> git rm -r --cached .         => all file Delete
+        >> git rm --cached <file name>  => Remove spacific name
+        ________________________________________________________________________________
+        >> git status       => status check on local (this computer)
+            status meaning
+                - modify    editing but didn't save to repositiory
+                - stag      File notice for save latest version
+                - committed Save to repositiory
+    ____________________________________________________________________________________
+    - git commit    // Save data operating to user computer
+        >> git commit -m "--Comment--"
+            History commit log check
+                >> git log
+                >> git log --oneline
+                >> git log --graph
+                        Ex. Add/Create file by Terminal
+                            >> touch app.js
+                            >> touch index.html
+            Compare changing Point
+                >> git diff <commit ID>                
+                >> git diff <commit ID> <commit ID>
+
+            Cancal file editing (check out)
+                >> git checkout <file name>     // recovery latest commit file ex. make make but NG need to start to editing file befor diing
+
+            Return version before add file to staging area <git reset>
+                >> git reset <file name>        // ex >> git reset readme.txt  การดึกไฟล์ที่ไม่ต้องการออกจาก staging area
+
+            Return version commit before
+                >> git reset --option <commit ID>       // ex. git reste --hard 58356ae
+                    option  
+                        --soft      //return to before commit ID and keep current commit to staging area
+                        --mixed     //Delete all commit after this commit ID and return after this to staging area
+                        --hard      //Delete all commit after this commit
+        ____________________________________________________________________________________
+        Git Branching (Fix bug method)
+            >> git branch                               // show current commit line (normally master)
+            >> git checkout -b <Make name branch>        // make new branch
+
+            >> git branch -d <name>         //Delete branch
+            >> git checkout <name>          //switch to branch that needed
+            >> git checkout master          //switch to main master branch
+            >> git merge <name>             // Marge branch
+              
+____________________________________________________________________________________                
+    - git push      // Upload all data that revised to server
+        => Make repositiory in GitHub
+        => (Follow git GitHub code)
+                - new repositiory
+                    >> git init
+                    >> git commit -m "first comment"
+                    >> git branch -m main
+                    >> git remote add origin https://github......
+                    >> git push -u origin main
+
+                - add data that already repositiory
+                    >> git remote add origin https://github.....
+                    >> git branch -m main
+                    >> git push -u origin main
+________________________________________________________________________________
+    - git pull       // Pull data from server to local computer
+
+________________________________________________________________________________
+    - git clone
+        => select folder that you need to correct data  
+        >> git clone https://github.com/.............
+
+
+
+
+
+(AI check after)
+สรุปที่คุณทำมาถือว่า ยอดเยี่ยมและละเอียดมากครับ ครอบคลุมคำสั่งพื้นฐานไปจนถึงระดับกลางได้ครบถ้วนเลย แต่มีจุดผิดพลาดเล็กน้อยเรื่อง ตัวสะกด (Typo) และ คำอธิบายบางจุด ที่อาจทำให้สับสนในอนาคต ผมขอช่วยแก้จุดสำคัญให้ดังนี้ครับ:
+1. จุดที่ต้องแก้ไขเรื่องตัวสะกด (Syntax Error)
+คำสั่ง Git ต้องเป็น ตัวพิมพ์เล็กทั้งหมด ครับ:
+❌ git Config -> ✅ git config (บรรทัดแรกสุด)
+❌ git log --ghrap -> ✅ `git log --graph (คำว่า Graph)
+❌ git marge -> ✅ `git merge (การรวม Branch)
+❌ git pill -> ✅ `git pull (การดึงข้อมูล)
+2. คำอธิบายที่อาจคลาดเคลื่อน (Logic/Detail)
+git reset : ในโน้ตเขียนว่า "ดึกไฟล์" (น่าจะหมายถึง ดึงไฟล์) ตัวนี้ใช้สำหรับเอาไฟล์ออกจาก Staging Area กลับไปเป็นแค่ไฟล์ที่แก้ไขแล้ว (Modified) ถูกต้องครับ
+git status (ความหมายของสถานะ):
+Modified: แก้ไขแล้วแต่ยังไม่ได้รับเข้า Staging (ยังไม่ได้ git add)
+Staged: ไฟล์ที่รอการบันทึก (ทำการ git add แล้ว)
+Committed: บันทึกลงฐานข้อมูลของ Git ในเครื่องเรียบร้อยแล้ว
+git checkout : ใน Git เวอร์ชันใหม่ๆ (2.23+) แนะนำให้ใช้คำสั่ง git restore <file> แทนการใช้ checkout เพื่อคืนค่าไฟล์ครับ (แต่ checkout ยังใช้ได้อยู่)
+git reset --mixed: ตัวนี้จะยกเลิกการ Commit และเอาไฟล์ออกจาก Staging Area ด้วย (ไฟล์จะกลับไปอยู่ในสถานะ Modified) ไม่ใช่แค่ return ไปที่ staging อย่างเดียวครับ
+3. ส่วนของ Git Branching
+git branch -m main: คำสั่งนี้สำคัญมาก เพราะปัจจุบัน GitHub เปลี่ยนชื่อกิ่งหลักจาก master เป็น main แล้ว ดังนั้นสรุปของคุณที่ใช้ main ในช่วงท้ายถือว่าทันสมัยและถูกต้องครับ
+4. สรุปภาพรวม "วงจรการทำงาน"
+ถ้าจะสรุปให้สั้นและจำง่ายขึ้น:
+Working Directory (ไฟล์ในเครื่อง) -> git add -> Staging Area (เตรียมส่ง)
+Staging Area -> git commit -> Local Repo (บันทึกในเครื่อง)
+Local Repo -> git push -> Remote Repo (GitHub) (ส่งขึ้นเซิร์ฟเวอร์)
+สรุปโดยรวม: เนื้อหาที่คุณจดมาใช้งานได้จริง 95% เลยครับ แค่ระวังเรื่องตัวพิมพ์ใหญ่-เล็กใน Command Line เพราะระบบจะมองว่าเป็นคนละคำสั่งกันครับ
+คุณอยากให้ผมสรุปวิธีการแก้ "Merge Conflict" เพิ่มเติมด้วยไหมครับ เผื่อต้องเจอเวลาทำงานร่วมกับเพื่อน?
+
+
+
+
+
+
+คำแนะนำเพิ่มเติมเกี่ยวกับ Merge Conflict ซึ่งเป็นเหตุการณ์ที่จะเกิดขึ้นเมื่อคุณและเพื่อน "แก้ไขไฟล์เดียวกัน ในบรรทัดเดียวกัน" แล้ว Git ไม่รู้ว่าจะเลือกของใครดีครับ
+1. วิธีสังเกตเมื่อเกิด Conflict
+เมื่อคุณพิมพ์ git merge หรือ git pull แล้วพบข้อความ:
+CONFLICT (content): Merge conflict in [ชื่อไฟล์]
+Automatic merge failed; fix conflicts and then commit the result.
+2. วิธีการแก้ไข (Step-by-Step)
+เมื่อเกิดปัญหานี้ Git จะเขียนสัญลักษณ์ลงไปในไฟล์ที่มีปัญหาเพื่อให้คุณเลือกครับ:
+เปิดไฟล์ที่มีปัญหา: คุณจะเห็นสัญลักษณ์ประหลาดๆ แบบนี้:
+text
+<<<<<<< HEAD
+ข้อความที่คุณเขียน (Current Change)
+=======
+ข้อความที่เพื่อนเขียน หรือมาจาก Branch อื่น (Incoming Change)
+>>>>>>> branch-name
+ใช้โค้ดอย่างระมัดระวัง
+เลือกสิ่งที่ถูกต้อง:
+ลบสัญลักษณ์ <<<<, ====, >>>> ออกให้หมด
+แก้ไขเนื้อหาในไฟล์ให้เหลือเวอร์ชันที่ "ถูกต้องที่สุด" (จะเลือกของคุณ, ของเพื่อน หรือผสมกันก็ได้)
+บันทึกผลงาน:
+git add <ชื่อไฟล์> (เพื่อบอก Git ว่าฉันแก้ Conflict เสร็จแล้วนะ)
+git commit -m "Fix merge conflict"
+3. เทคนิคช่วยจัดการ
+ใช้ VS Code: หากคุณใช้ VS Code มันจะมีปุ่มให้กดด้านบนข้อความเลยครับ เช่น Accept Current Change หรือ Accept Incoming Change ช่วยให้ไม่ต้องลบสัญลักษณ์เอง
+เช็กสถานะเสมอ: ถ้าจำไม่ได้ว่าเหลือไฟล์ไหนที่ยังแก้ไม่เสร็จ ให้พิมพ์ git status มันจะบอกรายการไฟล์ที่มีปัญหาอยู่ครับ
+ถอยตั้งหลัก: หากแก้ไปแก้มาแล้วงง อยากยกเลิกการ Merge ครั้งนี้ไปก่อน ให้ใช้คำสั่ง:
+git merge --abort
+คุณอยากลองจำลองสถานการณ์ Conflict เพื่อดูวิธีแก้แบบเห็นภาพชัดๆ ไหมครับ?
+
+
