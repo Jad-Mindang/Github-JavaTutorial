@@ -36,3 +36,7 @@ public class Java02_BMI_Cal {
         sc.close();                 // Hello test
     }
 }
+
+
+
+

@@ -11,7 +11,7 @@ GitHub
     - git commit    // Save data operating to user computer
     - git push      // Upload all data that revised to server
 
-
+________________________________________________________________________________
 >> Cycle of control process <Deatil>
     - git init      // Create Git repository
     ____________________________________________________________________________________
